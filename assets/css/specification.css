@@ -66,6 +66,11 @@
     counter-increment: item;
 }
 
+.use-case td > ol,
+.use-case td > ul {
+    padding-left: 1em;
+}
+
 .use-case td > *:last-child {
     margin-bottom: 0;
 }
