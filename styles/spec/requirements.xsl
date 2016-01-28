@@ -7,14 +7,14 @@
 
   <!-- Render all of the functional requirements. -->
   <xsl:template match="spec:functional-requirements">
-    <h2>Functional Requirements</h2>
+    <h2 id="_func_reqs">Functional Requirements</h2>
     <xsl:apply-templates/>
     <div class="page-break"/>
   </xsl:template>
 
   <!-- Render all of the nonfunctional requirements. -->
   <xsl:template match="spec:nonfunctional-requirements">
-    <h2>Nonfunctional Requirements</h2>
+    <h2 id="_nonfunc_reqs">Nonfunctional Requirements</h2>
     <xsl:apply-templates/>
   </xsl:template>
 
