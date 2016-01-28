@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  elementFormDefault="qualified"
+  targetNamespace="urn:kherge:specification"
+  version="1.0"
+  xml:lang="en"
+  xmlns="urn:kherge:specification"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Load the XHTML 1.1 strict schema. -->
+  <xs:import
+    namespace="http://www.w3.org/1999/xhtml"
+    schemaLocation="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"
+  />
+
+  <!-- Define the only document element. -->
+  <xs:element name="specification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="project" type="project"/>
+        <xs:element name="introduction" type="introduction"/>
+        <xs:element name="definitions" type="definitions"/>
+        <xs:element name="use-cases" type="use-cases"/>
+        <xs:element name="functional-requirements" type="functional-requirements"/>
+        <xs:element name="nonfunctional-requirements" type="nonfunctional-requirements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Shared Types
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="block">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:group ref="xhtml:block"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType mixed="true" name="block-and-inline">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:group ref="xhtml:block"/>
+      <xs:group ref="xhtml:inline"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="inline" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:group ref="xhtml:inline"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Project Information
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="project">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Introduction
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="introduction">
+    <xs:sequence>
+      <xs:element name="purpose" type="block"/>
+      <xs:element name="scope" type="block"/>
+      <xs:element name="overview" type="block"/>
+      <xs:element name="references" type="references"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="references">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="reference" type="reference"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reference">
+    <xs:sequence>
+      <xs:element name="text" type="inline"/>
+      <xs:element name="link" type="xs:anyURI"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Definitions
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="definitions">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="definition" type="definition"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="definition">
+    <xs:sequence>
+      <xs:element name="term" type="xs:string"/>
+      <xs:element name="definition" type="inline"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Use Cases
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="use-cases">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="use-case" type="use-case"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="use-case">
+    <xs:sequence>
+      <xs:element name="number" type="xs:ID"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="summary" type="inline"/>
+      <xs:element name="rationale" type="inline"/>
+      <xs:element name="users" type="users"/>
+      <xs:element name="preconditions" type="inline"/>
+      <xs:element name="basic-events" type="basic-events"/>
+      <xs:element name="alternative-paths" type="alternative-paths"/>
+      <xs:element name="postconditions" type="inline"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="users">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="user" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="basic-events">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="event" type="inline"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="alternative-paths">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="path" type="inline"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Functional and Nonfunctional Requirements
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <xs:complexType name="functional-requirements">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="requirement" type="requirement"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="nonfunctional-requirements">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="requirement" type="requirement"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="requirement">
+    <xs:sequence>
+      <xs:element name="number" type="xs:ID"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="summary" type="inline"/>
+      <xs:element name="rationale" type="inline"/>
+      <xs:element name="requirements" type="block-and-inline"/>
+      <xs:element name="references">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="reference" type="xs:IDREF"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

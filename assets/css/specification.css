@@ -1,0 +1,39 @@
+.container-fluid {
+    max-width: 1000px;
+}
+
+.definitions th:first-child {
+    text-align: right;
+    width: 25%;
+}
+
+.spec h3 {
+    font-style: italic;
+}
+
+.use-case td > *:last-child {
+    margin-bottom: 0;
+}
+
+.use-case th:first-child {
+    text-align: right;
+    width: 25%;
+}
+
+.use-case .number {
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+@media print {
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: auto;
+    }
+    .page-break {
+        page-break-after: always;
+    }
+}
