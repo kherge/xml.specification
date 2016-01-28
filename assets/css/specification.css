@@ -7,8 +7,50 @@
     width: 25%;
 }
 
+.spec {
+    counter-reset: h2;
+}
+
+.spec h2:before,
+.spec h3:before,
+.spec h4:before,
+.spec h5:before,
+.spec h6:before {
+    color: #acacac;
+    padding-right: .5em;
+}
+
+.spec h2 {
+    counter-reset: h3;
+}
+
+.spec h2:before {
+    content: counter(h2);
+    counter-increment: h2;
+}
+
 .spec h3 {
+    counter-reset: h4;
     font-style: italic;
+}
+
+.spec h3:before {
+    content: counter(h2) '.' counter(h3);
+    counter-increment: h3;
+}
+
+.spec h4 {
+    counter-reset: h5;
+}
+
+.spec h4:before {
+    content: counter(h2) '.' counter(h3) '.' counter(h4);
+    counter-increment: h4;
+}
+
+.spec h4.panel-title:before {
+    content: '';
+    counter-increment: none;
 }
 
 .toc ol {
