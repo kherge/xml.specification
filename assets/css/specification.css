@@ -11,6 +11,19 @@
     font-style: italic;
 }
 
+.toc ol {
+    counter-reset: item;
+}
+
+.toc li {
+    display: block;
+}
+
+.toc li:before {
+    content: counters(item, '.') '. ';
+    counter-increment: item;
+}
+
 .use-case td > *:last-child {
     margin-bottom: 0;
 }
@@ -23,6 +36,16 @@
 .use-case .number {
     font-weight: bold;
     margin-right: 15px;
+}
+
+@media not print {
+    .toc ol {
+        padding-left: 17px;
+    }
+
+    .toc > ol {
+        padding-left: 0;
+    }
 }
 
 @media print {
