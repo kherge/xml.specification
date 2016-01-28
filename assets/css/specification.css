@@ -33,7 +33,21 @@
     tr {
         page-break-inside: auto;
     }
+
     .page-break {
+        clear: both;
+        display: block;
         page-break-after: always;
+    }
+}
+
+@media print and (-webkit-min-device-pixel-ratio: 0) {
+    @page {
+        margin-left: 13mm;
+        margin-right: 13mm;
+    }
+
+    body {
+        width: 190mm;
     }
 }
