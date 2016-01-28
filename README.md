@@ -109,6 +109,16 @@ document as a web page. If this also does not work, you will need to run your
 XML document through an XSL processor and save the result as an HTML file in
 the same directory.
 
+#### Printing
+
+Firefox is the best browser to use if you need to print your specification.
+
+Tests done on Safari and Chrome have shown that the page dimensions are not
+calculated correctly. As a result, you may see that the table of contents
+continues down the left side instead taking up the full width of the page.
+You may also notice that page breaks do not work properly after the title
+page.
+
 License
 -------
 
