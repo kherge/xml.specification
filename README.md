@@ -6,6 +6,11 @@ requirements specification as shown in [Applied Software Project Management][].
 A big thank you to both [Andrew Stellman and Jennifer Greene][] for making the
 [outline][] available online as a PDF!
 
+Preview
+-------
+
+[Let's start off with a preview!][]
+
 What's inside
 -------------
 
@@ -109,6 +114,7 @@ License
 
 This package is released under the MIT license, so use, mangle, and share!
 
+[Let's start off with a preview!]: https://cdn.rawgit.com/kherge/srs/master/example.xml
 [Applied Software Project Management]: http://www.stellman-greene.com/about/applied-software-project-management/
 [Andrew Stellman and Jennifer Greene]: http://www.stellman-greene.com/
 [outline]: http://www.stellman-greene.com/images/stories/Library/SRS%20Outline.pdf
