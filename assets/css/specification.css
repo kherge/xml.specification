@@ -119,6 +119,12 @@
         border-color: #454545;
     }
 
+    .dark-mode .panel-heading {
+        background-color: #2b2b2b;
+        border-color: #454545;
+        color: #f8f8f8;
+    }
+
     .dark-mode .table > tbody > tr > td,
     .dark-mode .table > tbody > tr > th,
     .dark-mode .table > thead > tr > th,
