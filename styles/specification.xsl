@@ -37,6 +37,13 @@
         <link href="assets/css/specification.css" media="all" rel="stylesheet"/>
       </head>
       <body>
+        <div class="menu">
+          <ul class="nav nav-pills">
+            <li>
+              <a href="javascript:toggleDarkMode()">Dark Mode</a>
+            </li>
+          </ul>
+        </div>
         <div class="container-fluid">
           <div class="row visible-print">
             <div class="col-xs-12">
@@ -74,6 +81,7 @@
         </div>
         <script src="assets/js/jquery.js"/>
         <script src="assets/js/bootstrap.js"/>
+        <script src="assets/js/specification.js"/>
       </body>
     </html>
   </xsl:template>
