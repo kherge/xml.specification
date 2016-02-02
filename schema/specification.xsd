@@ -27,10 +27,14 @@
         <xs:element name="nonfunctional-requirements" type="nonfunctional-requirements"/>
       </xs:sequence>
     </xs:complexType>
-    <xs:unique name="GloballyUniqueNumber">
-      <xs:selector xpath=".//*"/>
+    <xs:key name="GlobalNumber">
+      <xs:selector xpath="spec:use-cases/spec:use-case | spec:functional-requirements/spec:requirement | spec:nonfunctional-requirements/spec:requirement"/>
       <xs:field xpath="spec:number"/>
-    </xs:unique>
+    </xs:key>
+    <xs:keyref name="GlobalNumberRef" refer="GlobalNumber">
+      <xs:selector xpath="spec:functional-requirements/spec:requirement/spec:references/spec:reference | spec:nonfunctional-requirements/spec:requirement/spec:references/spec:reference"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
   </xs:element>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
