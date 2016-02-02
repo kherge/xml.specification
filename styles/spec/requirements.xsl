@@ -44,6 +44,23 @@
       <table class="table table-bordered">
         <tbody>
           <xsl:apply-templates/>
+          <tr>
+            <th>Referenced By</th>
+            <td>
+              <xsl:variable name="reqNumber" select="normalize-space(spec:number/text())"/>
+              <xsl:variable name="reqRefs" select="//spec:requirement[spec:references/spec:reference[text() = $reqNumber]]"/>
+              <xsl:choose>
+                <xsl:when test="$reqRefs">
+                  <ul>
+                    <xsl:apply-templates mode="reqRefs" select="$reqRefs"/>
+                  </ul>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>There are no references.</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -97,9 +114,22 @@
 
   <!-- Render a reference as a list item. -->
   <xsl:template match="spec:requirement/spec:references/spec:reference">
+    <xsl:variable name="refId" select="."/>
+    <xsl:apply-templates
+      mode="reqRefs"
+      select="//spec:use-case[spec:number/text() = $refId] | //spec:requirement[spec:number/text() = $refId]"
+    />
+  </xsl:template>
+
+  <!-- Render the requirements that reference the requirement. -->
+  <xsl:template match="spec:use-case | spec:requirement" mode="reqRefs">
     <li>
-      <a href="#{.}">
-        <xsl:value-of select="."/>
+      <a href="#{spec:number}">
+        <strong>
+          <xsl:value-of select="spec:number"/>
+        </strong>
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="spec:name"/>
       </a>
     </li>
   </xsl:template>

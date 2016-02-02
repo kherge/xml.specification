@@ -38,6 +38,23 @@
       <table class="table table-bordered">
         <tbody>
           <xsl:apply-templates/>
+          <tr>
+            <th>Referenced By</th>
+            <td>
+              <xsl:variable name="caseNumber" select="normalize-space(spec:number/text())"/>
+              <xsl:variable name="caseRefs" select="//spec:requirement[spec:references/spec:reference[text() = $caseNumber]]"/>
+              <xsl:choose>
+                <xsl:when test="$caseRefs">
+                  <ul>
+                    <xsl:apply-templates mode="caseRefs" select="$caseRefs"/>
+                  </ul>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>There are no references.</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -142,6 +159,19 @@
         <xsl:apply-templates mode="copy"/>
       </td>
     </tr>
+  </xsl:template>
+
+  <!-- Render the requirements that reference the use case. -->
+  <xsl:template match="spec:requirement" mode="caseRefs">
+    <li>
+      <a href="#{spec:number}">
+        <strong>
+          <xsl:value-of select="spec:number"/>
+        </strong>
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="spec:name"/>
+      </a>
+    </li>
   </xsl:template>
 
 </xsl:stylesheet>
