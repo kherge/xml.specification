@@ -23,16 +23,24 @@
         <xs:element name="introduction" type="introduction"/>
         <xs:element name="definitions" type="definitions"/>
         <xs:element name="use-cases" type="use-cases"/>
-        <xs:element name="functional-requirements" type="functional-requirements"/>
-        <xs:element name="nonfunctional-requirements" type="nonfunctional-requirements"/>
+        <xs:element name="functional-requirements" type="requirements"/>
+        <xs:element name="nonfunctional-requirements" type="requirements"/>
       </xs:sequence>
     </xs:complexType>
     <xs:key name="GlobalNumber">
-      <xs:selector xpath="spec:use-cases/spec:use-case | spec:functional-requirements/spec:requirement | spec:nonfunctional-requirements/spec:requirement"/>
+      <xs:selector xpath="spec:use-cases/spec:use-case
+        | spec:use-cases/spec:group/spec:use-case
+        | spec:functional-requirements/spec:requirement
+        | spec:functional-requirements/spec:group/spec:requirement
+        | spec:nonfunctional-requirements/spec:requirement
+        | spec:nonfunctional-requirements/spec:group/spec:requirement"/>
       <xs:field xpath="spec:number"/>
     </xs:key>
     <xs:keyref name="GlobalNumberRef" refer="GlobalNumber">
-      <xs:selector xpath="spec:functional-requirements/spec:requirement/spec:references/spec:reference | spec:nonfunctional-requirements/spec:requirement/spec:references/spec:reference"/>
+      <xs:selector xpath="spec:functional-requirements/spec:requirement/spec:references/spec:reference
+        | spec:functional-requirements/spec:group/spec:requirement/spec:references/spec:reference
+        | spec:nonfunctional-requirements/spec:requirement/spec:references/spec:reference
+        | spec:nonfunctional-requirements/spec:group/spec:requirement/spec:references/spec:reference"/>
       <xs:field xpath="."/>
     </xs:keyref>
   </xs:element>
@@ -118,9 +126,17 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <xs:complexType name="use-cases">
-    <xs:sequence maxOccurs="unbounded">
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="use-case" type="use-case"/>
-    </xs:sequence>
+      <xs:element name="group">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" name="use-case" type="use-case"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="use-case">
@@ -159,16 +175,18 @@
     Functional and Nonfunctional Requirements
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <xs:complexType name="functional-requirements">
-    <xs:sequence maxOccurs="unbounded">
+  <xs:complexType name="requirements">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="group">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" name="requirement" type="requirement"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="requirement" type="requirement"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="nonfunctional-requirements">
-    <xs:sequence maxOccurs="unbounded">
-      <xs:element name="requirement" type="requirement"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="requirement">
