@@ -12,8 +12,20 @@
     <div class="page-break"/>
   </xsl:template>
 
+  <!-- Render each group as is. -->
+  <xsl:template match="spec:use-cases/spec:group">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Render each group title as a heading. -->
+  <xsl:template match="spec:use-cases/spec:group/spec:title">
+    <h3>
+      <xsl:value-of select="."/>
+    </h3>
+  </xsl:template>
+
   <!-- Render each use case as a table. -->
-  <xsl:template match="spec:use-cases/spec:use-case">
+  <xsl:template match="spec:use-case">
     <div class="panel panel-default use-case" id="{./spec:number}">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -32,11 +44,11 @@
   </xsl:template>
 
   <!-- Ignore the name and number. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:number"/>
-  <xsl:template match="spec:use-cases/spec:use-case/spec:name"/>
+  <xsl:template match="spec:use-case/spec:number"/>
+  <xsl:template match="spec:use-case/spec:name"/>
 
   <!-- Render the summary as a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:summary">
+  <xsl:template match="spec:use-case/spec:summary">
     <tr>
       <th>Summary</th>
       <td>
@@ -46,7 +58,7 @@
   </xsl:template>
 
   <!-- Render the rationale as a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:rationale">
+  <xsl:template match="spec:use-case/spec:rationale">
     <tr>
       <th>Rationale</th>
       <td>
@@ -56,7 +68,7 @@
   </xsl:template>
 
   <!-- Render the users as list within a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:users">
+  <xsl:template match="spec:use-case/spec:users">
     <tr>
       <th>Users</th>
       <td>
@@ -68,14 +80,14 @@
   </xsl:template>
 
   <!-- Render the user entry as a list item. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:users/spec:user">
+  <xsl:template match="spec:use-case/spec:users/spec:user">
     <li>
       <xsl:apply-templates mode="copy"/>
     </li>
   </xsl:template>
 
   <!-- Render the preconditions as a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:preconditions">
+  <xsl:template match="spec:use-case/spec:preconditions">
     <tr>
       <th>Preconditions</th>
       <td>
@@ -85,7 +97,7 @@
   </xsl:template>
 
   <!-- Render the basic course of events as a list in a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:basic-events">
+  <xsl:template match="spec:use-case/spec:basic-events">
     <tr>
       <th>Basic Course of Events</th>
       <td>
@@ -97,14 +109,14 @@
   </xsl:template>
 
   <!-- Render an event as a list item. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:basic-events/spec:event">
+  <xsl:template match="spec:use-case/spec:basic-events/spec:event">
     <li>
       <xsl:apply-templates mode="copy"/>
     </li>
   </xsl:template>
 
   <!-- Render the alternative paths as a list in a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:alternative-paths">
+  <xsl:template match="spec:use-case/spec:alternative-paths">
     <tr>
       <th>Alternative Paths</th>
       <td>
@@ -116,14 +128,14 @@
   </xsl:template>
 
   <!-- Render an alternative path as a list item. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:alternative-paths/spec:path">
+  <xsl:template match="spec:use-case/spec:alternative-paths/spec:path">
     <li>
       <xsl:apply-templates mode="copy"/>
     </li>
   </xsl:template>
 
   <!-- Render the postconditions as a table row. -->
-  <xsl:template match="spec:use-cases/spec:use-case/spec:postconditions">
+  <xsl:template match="spec:use-case/spec:postconditions">
     <tr>
       <th>Postconditions</th>
       <td>

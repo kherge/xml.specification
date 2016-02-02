@@ -18,6 +18,18 @@
     <xsl:apply-templates/>
   </xsl:template>
 
+  <!-- Render each group as is. -->
+  <xsl:template match="spec:functional-requirements/spec:group | spec:nonfunctional-requirements/spec:group">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Render each group title as a heading. -->
+  <xsl:template match="spec:functional-requirements/spec:group/spec:title | spec:nonfunctional-requirements/spec:group/spec:title">
+    <h3>
+      <xsl:value-of select="."/>
+    </h3>
+  </xsl:template>
+
   <!-- Render a requirement as a table. -->
   <xsl:template match="spec:requirement">
     <div class="panel panel-default use-case" id="{./spec:number}">
