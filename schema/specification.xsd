@@ -5,6 +5,7 @@
   version="1.0"
   xml:lang="en"
   xmlns="urn:kherge:specification"
+  xmlns:spec="urn:kherge:specification"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
@@ -26,6 +27,10 @@
         <xs:element name="nonfunctional-requirements" type="nonfunctional-requirements"/>
       </xs:sequence>
     </xs:complexType>
+    <xs:unique name="GloballyUniqueNumber">
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="spec:number"/>
+    </xs:unique>
   </xs:element>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
