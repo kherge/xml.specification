@@ -15,6 +15,7 @@
 
 .spec {
     counter-reset: h2;
+    z-index: -1;
 }
 
 .spec h2:before,
@@ -65,11 +66,22 @@
 
 .toc li {
     display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.toc li:hover {
+    overflow: visible;
 }
 
 .toc li:before {
     content: counters(item, '.') '. ';
     counter-increment: item;
+}
+
+.toc li:hover > a {
+    background-color: #ffffff;
 }
 
 .use-case td > ol {
@@ -138,6 +150,10 @@
 
     .dark-mode .table-striped > tbody > tr:nth-of-type(2n+1) {
         background-color: #2b2b2b;
+    }
+
+    .dark-mode .toc li:hover > a {
+        background-color: #333333;
     }
 
     .toc ol {
