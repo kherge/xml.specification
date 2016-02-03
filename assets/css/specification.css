@@ -15,7 +15,6 @@
 
 .spec {
     counter-reset: h2;
-    z-index: -1;
 }
 
 .spec h2:before,
@@ -58,6 +57,10 @@
 .spec h4.panel-title:before {
     content: '';
     counter-increment: none;
+}
+
+.toc {
+    z-index: 1;
 }
 
 .toc ol {
