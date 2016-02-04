@@ -110,6 +110,22 @@
 }
 
 @media not print {
+    .menu .disabled {
+        display: inherit;
+    }
+
+    .menu .enabled {
+        display: none;
+    }
+
+    .dark-mode .menu .disabled {
+        display: none;
+    }
+
+    .dark-mode .menu .enabled {
+        display: inherit;
+    }
+
     .dark-mode {
         background-color: #333333;
         color: #f8f8f8;

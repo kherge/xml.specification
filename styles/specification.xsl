@@ -40,7 +40,10 @@
         <div class="menu">
           <ul class="nav nav-pills">
             <li>
-              <a href="javascript:toggleDarkMode()">Dark Mode</a>
+              <a href="javascript:toggleDarkMode()">
+                <span class="enabled">Light Mode</span>
+                <span class="disabled">Dark Mode</span>
+              </a>
             </li>
           </ul>
         </div>
@@ -80,6 +83,7 @@
           </div>
         </div>
         <script src="assets/js/jquery.js"/>
+        <script src="assets/js/jquery/cookie.js"/>
         <script src="assets/js/bootstrap.js"/>
         <script src="assets/js/specification.js"/>
       </body>
