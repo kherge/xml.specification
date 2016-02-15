@@ -25,6 +25,7 @@ What you need
 - A modern browser than can render XML using XSL.
 - Experiencing editing XML documents.
 - Your all-time favorite XML editor.
+- `xmllint` if you want to use `tools/validate.sh`.
 
 How it works
 ------------
