@@ -26,6 +26,7 @@ What you need
 - Experiencing editing XML documents.
 - Your all-time favorite XML editor.
 - `xmllint` if you want to use `tools/validate.sh`.
+- PERL 5.8+ if you want to use `tools/fix-ids.pl`.
 
 How it works
 ------------
