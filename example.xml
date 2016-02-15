@@ -256,8 +256,8 @@
         <number>FR-4</number>
         <name>Case sensitivity in search-and-replace</name>
         <summary>
-          The search-and-replace feature must have case sensitivity in both the
-          search and the replacement.
+          The search-and-replace feature (<x:a href="#UC-8">UC-8</x:a>) must
+          have case sensitivity in both the search and the replacement.
         </summary>
         <rationale>
           A user will often search for a word that is part of a sentence, title,
