@@ -7,6 +7,8 @@ if [ -f "$FILE" ]; then
     xmllint -noout \
         -schema "$HERE/../schema/specification.xsd" \
         "$1"
+
+    exit $?
 fi
 
 echo "$FILE: No such file" >&2
