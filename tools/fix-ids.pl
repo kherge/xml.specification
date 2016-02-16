@@ -2,11 +2,30 @@
 
 # Load modules.
 use Carp;
+use File::Basename qw(basename);
 use strict;
 use XML::LibXML;
 
+# Know thyself.
+my $SELF = basename($0);
+
 # Get arguments.
 my $FILE = $ARGV[0];
+
+if ('' eq $FILE) {
+    print STDERR <<"HELP";
+Usage: $SELF FILE
+Renumbers all <number/> tag values.
+
+This script will parse the specification XML document and renumber all use cases
+and requirements to begin at 1. All references (anchor links and requirements)
+will be automatically updated with the new identifier number.
+
+FILE
+  The path to the specification XML file.
+HELP
+    exit(0);
+}
 
 # Parse the specification.
 my $doc = XML::LibXML->load_xml(location => $FILE);
