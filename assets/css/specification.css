@@ -87,6 +87,10 @@
     background-color: #ffffff;
 }
 
+.toc li.id:before {
+    margin-right: 5px;
+}
+
 .use-case td > ol {
     padding-left: 1.2em;
 }

@@ -60,7 +60,7 @@
 
   <!-- Render a single use case as a item in the table of contents. -->
   <xsl:template match="spec:use-cases/spec:use-case | spec:use-cases/spec:group/spec:use-case" mode="toc">
-    <li>
+    <li class="id {spec:number}" data-number="{spec:number}">
       <a href="#{spec:number}">
         <xsl:value-of select="spec:name"/>
       </a>
@@ -101,7 +101,7 @@
 
   <!-- Render a requirement as a item in the table of contents. -->
   <xsl:template match="spec:requirement" mode="toc">
-    <li>
+    <li class="id {spec:number}" data-number="{spec:number}">
       <a href="#{spec:number}">
         <xsl:value-of select="spec:name"/>
       </a>

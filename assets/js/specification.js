@@ -4,7 +4,32 @@ $(function () {
     if ('enabled' === $.cookie('darkMode')) {
         toggleDarkMode();
     }
+
+    setTocNumbers();
 });
+
+function setTocNumbers()
+{
+    var css = [];
+
+    $('li[data-number]').each(
+        function () {
+            var $this = $(this);
+
+            css.push(
+                '.toc li.id.'
+                    + $this.data('number')
+                    + ':before {content: \''
+                    + $this.data('number')
+                    + '\';}'
+            );
+        }
+    );
+
+    $('head').append(
+        $('<style type="text/css">' + css.join('') + '</style>')
+    );
+}
 
 function toggleDarkMode()
 {
