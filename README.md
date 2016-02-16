@@ -14,8 +14,10 @@ Preview
 What's inside
 -------------
 
+- BASH Scripts
 - Bootstrap 3.3.6
 - jQuery 2.2.0
+- PERL Scripts
 - XML Schema
 - XML Stylesheets
 
@@ -23,7 +25,7 @@ What you need
 -------------
 
 - A modern browser than can render XML using XSL.
-- Experiencing editing XML documents.
+- Experience editing XML documents.
 - Your all-time favorite XML editor.
 - `xmllint` if you want to use `tools/validate.sh`.
 - PERL 5.8+ with `XML::LibXML` if you want to use `tools/fix-ids.pl`.
@@ -61,8 +63,8 @@ How to get started
 
 I suggest you take a good look at the provided `example.xml` document. It makes
 use of all of the elements that are defined by the schema. The XML tags are
-structured very closely to how the PDF describes the specification should be
-written.
+structured very closely to how the PDF (linked to earlier) describes the
+specification should be written.
 
 In the example, you will notice some instances of XML elements being prefixed
 with `x:`. The schema allows you to use HTML in nearly all instances of where
@@ -120,6 +122,24 @@ calculated correctly. As a result, you may see that the table of contents
 continues down the left side instead taking up the full width of the page.
 You may also notice that page breaks do not work properly after the title
 page.
+
+### Tools
+
+### `fix-ids.pl`
+
+As you write your specification, you may need to re-arrange some use cases or
+requirements. Going back and renumbering everything can become a real pain! To
+avoid doing this, leave all of the numbers alone and then run `fix-ids.pl`.
+
+    tools/fix-ids.pl mySpec.xml
+
+### `validate.sh`
+
+If you want to ensure that your specification will render correctly, you will
+want to occassionally validate your XML document and fix any changes that you
+may encounter. To find problems, run the `validate.sh` tool.
+
+    tools/validate.sh mySpec.xml
 
 License
 -------
