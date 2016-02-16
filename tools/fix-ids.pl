@@ -3,56 +3,82 @@
 # Load modules.
 use Carp;
 use strict;
+use XML::LibXML;
 
 # Get arguments.
 my $FILE = $ARGV[0];
 
-# Make sure input file exists.
-croak("$FILE: No such file") if (!-f $FILE);
+# Parse the specification.
+my $doc = XML::LibXML->load_xml(location => $FILE);
 
-# Read the entire file.
-croak("$FILE: $!") unless (open(FILE, '<', $FILE));
+# Make it possible to search our namespace.
+my $xpath = XML::LibXML::XPathContext->new($doc);
 
-my $contents = join('', <FILE>);
+$xpath->registerNs('spec', 'urn:kherge:specification');
+$xpath->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
 
-close(FILE);
+# Retrieve all unique identifiers.
+my @id_nodes = $xpath->findnodes('//spec:number');
+my @ids = ();
 
-# Match all unique identifiers.
-my @ids = ($contents =~ m{<number>([^<]+)</number>}g);
+foreach my $node (@id_nodes) {
+    push(@ids, $node->textContent);
+}
 
-# Reset identifiers.
-my %counters = ();
+# Find all references to the identifiers.
+my %refs = ();
+
+foreach my $node ($xpath->findnodes('//xhtml:a | //spec:reference')) {
+    my $id = $node->textContent;
+
+    if ($id =~ m/^(FR|NFR|UC)-\d+$/) {
+        if (!exists($refs{$id})) {
+            $refs{$id} = [];
+        }
+
+        push(@{$refs{$id}}, $node);
+    }
+}
+
+# Map reset identifier numbers.
+my %counter = ();
 my %reset = ();
 
-for my $id (@ids) {
-    my ($prefix) = ($id =~ m/^([^-]+-)/);
+foreach my $id (@ids) {
+    my ($prefix,) = split(/-/, $id);
 
-    if (exists($counters{$prefix})) {
-        $counters{$prefix}++;
+    if (exists($counter{$prefix})) {
+        $counter{$prefix}++;
     } else {
-        $counters{$prefix} = 1;
+        $counter{$prefix} = 1;
     }
 
-    $reset{$id} = $prefix . $counters{$prefix};
+    $reset{$id} = $prefix . '-' . $counter{$prefix};
 }
 
-# Replace all identifier instances.
-for my $id (keys(%reset)) {
+# Reset all unique identifiers.
+foreach my $node (@id_nodes) {
+    my $id = $node->textContent;
 
-    # Replace unique identifier.
-    $contents =~ s|<number>$id</number>|<number>$reset{$id}</number>|;
-
-    # Replace all references.
-    $contents =~ s|<reference>$id</reference>|<reference>$reset{$id}</reference>|g;
-
-    # Replace all anchor links.
-    $contents =~ s|<(([^:]+:)?a) (([^:]+:)?href)="#$id">$id</\1>|<$1 $3="$reset{$id}">$reset{$id}</$1>|g;
-
+    $node->removeChildNodes();
+    $node->appendText($reset{$id});
 }
 
-# Replace file contents.
-croak("$FILE: $!") unless (open(FILE, '>', $FILE));
+# Update all references.
+foreach my $id (keys(%refs)) {
+    foreach my $node (@{$refs{$id}}) {
+        $node->removeChildNodes();
+        $node->addChild(
+            $doc->createTextNode($reset{$id})
+        );
 
-print FILE $contents;
+        if ('a' eq $node->localName) {
+            $node->setAttribute(
+                'href',
+                '#' . $reset{$id}
+            );
+        }
+    }
+}
 
-close(FILE);
+print $doc->toFile($FILE, 2);
