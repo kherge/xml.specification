@@ -133,6 +133,14 @@ avoid doing this, leave all of the numbers alone and then run `fix-ids.pl`.
 
     tools/fix-ids.pl mySpec.xml
 
+### `next-ids.pl`
+
+Like before, you may rearrange use cases or requirements and end up losing
+track of which number comes next. The `next-ids.pl` tool will display the
+next available number for use cases and requirements.
+
+    tools/next-ids.pl mySpec.xml
+
 ### `validate.sh`
 
 If you want to ensure that your specification will render correctly, you will
