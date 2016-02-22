@@ -40,6 +40,12 @@
         <div class="menu">
           <ul class="nav nav-pills">
             <li>
+              <a href="#top">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                Top
+              </a>
+            </li>
+            <li>
               <a href="javascript:toggleDarkMode()">
                 <span class="enabled">
                   <span class="glyphicon glyphicon-flash"></span>
