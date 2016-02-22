@@ -41,8 +41,14 @@
           <ul class="nav nav-pills">
             <li>
               <a href="javascript:toggleDarkMode()">
-                <span class="enabled">Light Mode</span>
-                <span class="disabled">Dark Mode</span>
+                <span class="enabled">
+                  <span class="glyphicon glyphicon-flash"></span>
+                  Light Mode
+                </span>
+                <span class="disabled">
+                  <span class="glyphicon glyphicon-sunglasses"></span>
+                  Dark Mode
+                </span>
               </a>
             </li>
           </ul>
