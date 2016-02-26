@@ -154,7 +154,7 @@ License
 
 This package is released under the MIT license, so use, mangle, and share!
 
-[Let's start off with a preview!]: https://cdn.rawgit.com/kherge/srs/70898a54aa35d4173ebc28b84a0f3f50b99f98ab/example.xml
+[Let's start off with a preview!]: https://cdn.rawgit.com/kherge/srs/f4f857aadfae8c47b9491c80ca875a216e142e3f/example.xml
 [Applied Software Project Management]: http://www.stellman-greene.com/about/applied-software-project-management/
 [Andrew Stellman and Jennifer Greene]: http://www.stellman-greene.com/
 [outline]: http://www.stellman-greene.com/images/stories/Library/SRS%20Outline.pdf
