@@ -6,6 +6,8 @@ $(function () {
     }
 
     setTocNumbers();
+
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function setTocNumbers()
