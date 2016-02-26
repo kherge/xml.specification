@@ -97,23 +97,28 @@
     margin-right: 5px;
 }
 
+.requirement td > ol,
 .use-case td > ol {
     padding-left: 1.2em;
 }
 
+.requirement td > ul,
 .use-case td > ul {
     padding-left: 1em;
 }
 
+.requirement td > *:last-child,
 .use-case td > *:last-child {
     margin-bottom: 0;
 }
 
+.requirement th:first-child,
 .use-case th:first-child {
     text-align: right;
     width: 25%;
 }
 
+.requirement .number,
 .use-case .number {
     font-weight: bold;
     margin-right: 15px;

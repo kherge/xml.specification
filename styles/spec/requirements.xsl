@@ -32,7 +32,7 @@
 
   <!-- Render a requirement as a table. -->
   <xsl:template match="spec:requirement">
-    <div class="panel panel-default use-case" id="{./spec:number}">
+    <div class="panel panel-default requirement" id="{./spec:number}">
       <div class="panel-heading">
         <h4 class="panel-title">
           <span class="number">
